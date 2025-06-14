@@ -1,12 +1,12 @@
 import React from "react";
 import { ArrowRight, Download, Code, Database, Settings } from "lucide-react";
 import { motion } from "framer-motion";
-import fiori from '../images/fiori.png';
-import Capm from '../images/CAPM.png';
-import Build from '../images/Build.png';
-import Profile from '../images/profile.jpg';
-
-
+import fiori from "../images/fiori.png";
+import Capm from "../images/CAPM.png";
+import Build from "../images/Build.png";
+import Profile from "../images/profile.jpg";
+import resume from "../files/Marimuthu_Chidambaram_resume.pdf";
+import { toast } from "react-toastify";
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
@@ -14,6 +14,21 @@ const Hero = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleDownload = () => {
+    // Trigger file download
+    toast.success("Resume downloaded successfully!");
+
+    const link = document.createElement("a");
+    link.href = resume; // Make sure this file exists in /public/files/
+    link.download = "Marimuthu_Chidambaram_resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+
+    // Show the success modal
   };
 
   const containerVariants = {
@@ -89,7 +104,7 @@ const Hero = () => {
               </motion.h1>
               <motion.p
                 variants={itemVariants}
-                className="text-blue-100 text-lg md:text-xl max-w-2xl leading-relaxed"
+                className="text-blue-100 text-lg md:text-xl max-w-2xl leading-relaxed m-auto"
               >
                 SAP Fiori Consultant and SAP BTP CAPM Developer with 3+ years of
                 experience in building scalable, user-friendly enterprise
@@ -114,7 +129,9 @@ const Hero = () => {
                   size={20}
                 />
               </motion.button>
+
               <motion.button
+                onClick={handleDownload}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors duration-200"
@@ -130,9 +147,18 @@ const Hero = () => {
               className="flex justify-center lg:justify-start space-x-6"
             >
               {[
-                { icon: <img src={fiori} width={30} height={30}/>, label: "FIORI" },
-                { icon: <img src={Capm} width={30} height={30}/>, label: "CAPM" },
-                { icon: <img src={Build} width={30} height={30}/>, label: "Build Code" },
+                {
+                  icon: <img src={fiori} width={30} height={30} />,
+                  label: "FIORI",
+                },
+                {
+                  icon: <img src={Capm} width={30} height={30} />,
+                  label: "CAPM",
+                },
+                {
+                  icon: <img src={Build} width={30} height={30} />,
+                  label: "Build Code",
+                },
               ].map((tech, index) => (
                 <motion.div
                   key={tech.label}
@@ -160,7 +186,7 @@ const Hero = () => {
                 className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white/20 shadow-2xl"
               >
                 <img
-                  src= {Profile}
+                  src={Profile}
                   alt="SAP Developer Profile"
                   className="w-full h-full object-cover"
                 />
