@@ -1,23 +1,26 @@
 import React from 'react';
 import { Code, Database, Settings, Cloud, Zap, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
+import fiori from '../images/fiori.png';
+import capm from '../images/CAPM.png';
+import Build from '../images/Build.png';
 
 const Services = () => {
   const services = [
     {
-      icon: <Code size={40} />,
-      title: 'ABAP DEVELOPMENT',
-      description: 'Custom ABAP programming, reports, interfaces, conversions, enhancements, and forms development for SAP systems.'
+      icon: <img src={fiori} width={30} height={30}/>,
+      title: 'SAP UI5',
+      description: 'SAP UI5 development, custom Fiori applications, and responsive design for modern user interfaces.'
     },
     {
-      icon: <Database size={40} />,
-      title: 'SAP HANA',
-      description: 'SAP HANA database optimization, CDS views, AMDP procedures, and performance tuning for enterprise applications.'
+      icon: <img src={capm} width={30} height={30}/>,
+      title: 'SAP CAPM',
+      description: 'SAP Cloud Application Programming Model (CAPM) for building enterprise-grade applications with Node.js.'      
     },
     {
-      icon: <Settings size={40} />,
-      title: 'SAP FIORI',
-      description: 'Modern SAP Fiori app development, UI5 customization, and responsive design for enhanced user experience.'
+      icon:<img src={Build} width={30} height={30}/>,
+      title: 'SAP BUILD CODE',
+      description: 'SAP Build Code for rapid application development, prototyping, and low-code solutions.'
     },
     {
       icon: <Cloud size={40} />,

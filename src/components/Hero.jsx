@@ -1,12 +1,18 @@
-import React from 'react';
-import { ArrowRight, Download, Code, Database, Settings } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { ArrowRight, Download, Code, Database, Settings } from "lucide-react";
+import { motion } from "framer-motion";
+import fiori from '../images/fiori.png';
+import Capm from '../images/CAPM.png';
+import Build from '../images/Build.png';
+import Profile from '../images/profile.jpg';
+
+
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -16,9 +22,9 @@ const Hero = () => {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -27,35 +33,39 @@ const Hero = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6
-      }
-    }
+        duration: 0.6,
+      },
+    },
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
         <div className="absolute inset-0 bg-black/10"></div>
-        <motion.div 
-          animate={{ 
-            backgroundPosition: ['0% 0%', '100% 100%'],
+        <motion.div
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
           }}
-          transition={{ 
+          transition={{
             duration: 20,
             repeat: Infinity,
-            repeatType: 'reverse'
+            repeatType: "reverse",
           }}
           className="absolute inset-0 opacity-30"
           style={{
-            backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)',
-            backgroundSize: '100px 100px'
+            backgroundImage:
+              "radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+            backgroundSize: "100px 100px",
           }}
         />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -64,41 +74,47 @@ const Hero = () => {
           {/* Left Content */}
           <div className="text-center lg:text-left">
             <motion.div variants={itemVariants} className="mb-6">
-              <motion.p 
+              <motion.p
                 variants={itemVariants}
                 className="text-blue-200 text-lg mb-2 font-medium"
               >
-                SAP DEVELOPER
+                SAP BTP Consultant
               </motion.p>
-              <motion.h1 
+              <motion.h1
                 variants={itemVariants}
                 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
               >
                 LET'S BUILD
                 <span className="block text-blue-300">ENTERPRISE</span>
               </motion.h1>
-              <motion.p 
+              <motion.p
                 variants={itemVariants}
                 className="text-blue-100 text-lg md:text-xl max-w-2xl leading-relaxed"
               >
-                Experienced SAP Developer with 3+ years of expertise in ABAP, Fiori, and SAP integration solutions. Passionate about creating efficient enterprise applications.
+                SAP Fiori Consultant and SAP BTP CAPM Developer with 3+ years of
+                experience in building scalable, user-friendly enterprise
+                applications. Specialized in SAP UI5, CAPM, and end-to-end
+                solutions on the SAP Business Technology Platform.
               </motion.p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection('portfolio')}
+                onClick={() => scrollToSection("portfolio")}
                 className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors duration-200 group"
               >
                 View My Projects
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" size={20} />
+                <ArrowRight
+                  className="ml-2 group-hover:translate-x-1 transition-transform duration-200"
+                  size={20}
+                />
               </motion.button>
-              <motion.button 
+              <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition-colors duration-200"
@@ -109,14 +125,14 @@ const Hero = () => {
             </motion.div>
 
             {/* Tech Stack Icons */}
-            <motion.div 
+            <motion.div
               variants={itemVariants}
               className="flex justify-center lg:justify-start space-x-6"
             >
               {[
-                { icon: <Code size={24} />, label: 'ABAP' },
-                { icon: <Database size={24} />, label: 'HANA' },
-                { icon: <Settings size={24} />, label: 'Fiori' }
+                { icon: <img src={fiori} width={30} height={30}/>, label: "FIORI" },
+                { icon: <img src={Capm} width={30} height={30}/>, label: "CAPM" },
+                { icon: <img src={Build} width={30} height={30}/>, label: "Build Code" },
               ].map((tech, index) => (
                 <motion.div
                   key={tech.label}
@@ -133,44 +149,44 @@ const Hero = () => {
           </div>
 
           {/* Right Content - Profile Image */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="flex justify-center lg:justify-end"
           >
             <div className="relative">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
                 className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-8 border-white/20 shadow-2xl"
               >
                 <img
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src= {Profile}
                   alt="SAP Developer Profile"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
               {/* Decorative Elements */}
-              <motion.div 
-                animate={{ 
+              <motion.div
+                animate={{
                   scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.6, 0.3]
+                  opacity: [0.3, 0.6, 0.3],
                 }}
-                transition={{ 
+                transition={{
                   duration: 3,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
                 className="absolute -top-6 -right-6 w-24 h-24 bg-white/20 rounded-full blur-xl"
               />
-              <motion.div 
-                animate={{ 
+              <motion.div
+                animate={{
                   scale: [1.2, 1, 1.2],
-                  opacity: [0.2, 0.4, 0.2]
+                  opacity: [0.2, 0.4, 0.2],
                 }}
-                transition={{ 
+                transition={{
                   duration: 4,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
                 className="absolute -bottom-6 -left-6 w-32 h-32 bg-white/10 rounded-full blur-xl"
               />

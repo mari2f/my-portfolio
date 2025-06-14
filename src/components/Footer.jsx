@@ -4,10 +4,9 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
   const socialLinks = [
-    { icon: <Github size={20} />, href: '#', label: 'GitHub' },
-    { icon: <Linkedin size={20} />, href: '#', label: 'LinkedIn' },
-    { icon: <Twitter size={20} />, href: '#', label: 'Twitter' },
-    { icon: <Mail size={20} />, href: '#', label: 'Email' }
+    { icon: <Github size={20} />, href: 'https://github.com/mari2f', label: 'GitHub' },
+    { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/in/marimuthu-%E2%80%8E-2b90b5201/', label: 'LinkedIn' },
+    { icon: <Mail size={20} />, href: 'mailto:marimuthuchidambaram006@email.com', label: 'Email' }
   ];
 
   const scrollToTop = () => {
@@ -32,9 +31,9 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="text-2xl font-bold text-blue-400 mb-4">SAP Dev</div>
+            <div className="text-2xl font-bold text-blue-400 mb-4">SAP BTP Consultant</div>
             <p className="text-gray-400 leading-relaxed">
-              Experienced SAP Developer specializing in enterprise solutions, ABAP programming, and modern SAP technologies. Building the future of business applications.
+              Experienced SAP Developer specializing in SAP Fiori and BTP CAPM solutions and modern SAP technologies. Building the future of business applications.
             </p>
           </motion.div>
 
@@ -73,8 +72,8 @@ const Footer = () => {
           >
             <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
             <div className="space-y-2 text-gray-400">
-              <p>sap.developer@email.com</p>
-              <p>+1 (555) 123-4567</p>
+              <p>marimuthuchidambaram006@gmail.com</p>
+              <p>+91 99943 25334</p>
               <p>Remote / Global</p>
             </div>
           </motion.div>
@@ -96,6 +95,8 @@ const Footer = () => {
                 aria-label={social.label}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.9 }}
+                target='_blank'
+                rel='noopener noreferrer'
                 className="p-2 bg-gray-800 rounded-lg text-gray-400 hover:text-blue-400 hover:bg-gray-700 transition-colors duration-200"
               >
                 {social.icon}
@@ -132,7 +133,7 @@ const Footer = () => {
           viewport={{ once: true }}
           className="text-center text-gray-500 text-sm mt-8"
         >
-          <p>&copy; 2024 SAP Developer Portfolio. All rights reserved.</p>
+          <p>&copy; 2025 SAP Developer Portfolio. All rights reserved. @Marimuthu</p>
         </motion.div>
       </div>
     </footer>

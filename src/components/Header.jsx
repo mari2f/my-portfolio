@@ -68,7 +68,7 @@ const Header = () => {
             whileHover={{ scale: 1.05 }}
             className="text-2xl font-bold text-blue-600 dark:text-blue-400"
           >
-            SAP Dev
+            Marimuthu Chidambaram
           </motion.div>
 
           {/* Desktop Navigation */}

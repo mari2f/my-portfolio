@@ -1,26 +1,29 @@
 import React from 'react';
 import { Award, Users, Coffee, Clock, Code2, Database, Layers } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { GrCertificate } from "react-icons/gr";
+import fiori from '../images/fiori.png';
+import capm from '../images/CAPM.png';
+import Build from '../images/Build.png';
 
 const About = () => {
   const stats = [
     { icon: <Award size={32} />, number: '3+', label: 'Years Experience' },
-    { icon: <Users size={32} />, number: '25+', label: 'Projects Completed' },
-    { icon: <Coffee size={32} />, number: '500+', label: 'Hours Coding' },
-    { icon: <Clock size={32} />, number: '24/7', label: 'Support' }
+    { icon: <Users size={32} />, number: '45+', label: 'Object Completed' },
+    { icon: <GrCertificate size={32} />, number: '3+', label: 'SAP Certifications' },
+    { icon: <Clock size={32} />, number: '24/5', label: 'Support' }
   ];
 
   const skills = [
-    { name: 'ABAP Programming', percentage: 90 },
-    { name: 'SAP Fiori/UI5', percentage: 85 },
-    { name: 'SAP HANA', percentage: 80 },
-    { name: 'Integration Technologies', percentage: 75 }
+    { name: 'SAP Fiori/UI5', percentage: 90 },
+    { name: 'SAP BTP CAPM', percentage: 85 },
+    { name: 'SAP Build Code', percentage: 75 }
   ];
 
   const technologies = [
-    { icon: <Code2 size={24} />, name: 'ABAP', color: 'text-blue-600' },
-    { icon: <Database size={24} />, name: 'HANA', color: 'text-green-600' },
-    { icon: <Layers size={24} />, name: 'Fiori', color: 'text-purple-600' }
+    { icon:  <img src={fiori} width={30} height={30}/>, name: 'SAP FIORI', color: 'text-blue-600' },
+    { icon:  <img src={capm} width={30} height={30}/>, name: 'SAP BTP CAPM', color: 'text-green-600' },
+    { icon:  <img src={Build} width={30} height={30}/>, name: 'SAP BUILD CODE', color: 'text-purple-600' }
   ];
 
   return (
@@ -39,11 +42,11 @@ const About = () => {
                 ABOUT ME
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                Hello! I'm a dedicated SAP Developer with 3+ years of experience in enterprise application development. I specialize in ABAP programming, SAP Fiori applications, and system integrations that drive business efficiency.
+                Hello! I'm a passionate SAP Consultant with over 3 years of experience in developing modern, scalable enterprise applications. I specialize in SAP Fiori (UI5) development and SAP Business Technology Platform (BTP) using the Cloud Application Programming Model (CAPM).
+
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                My journey in SAP development has equipped me with deep knowledge of SAP modules, custom development, and modern SAP technologies. I'm passionate about creating scalable solutions that transform business processes.
-              </p>
+                My journey in SAP has allowed me to work across key modules like FI, MM, and CO—building custom apps, integrating workflows, and enhancing user experiences through intuitive, responsive interfaces. I’m committed to delivering high-quality solutions that align with business goals and improve operational efficiency.              </p>
             </div>
 
             {/* Skills */}
@@ -113,11 +116,11 @@ const About = () => {
                 <div className="bg-white dark:bg-gray-800 p-6 rounded-xl">
                   <div className="flex items-center space-x-4 mb-4">
                     <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-xl">SD</span>
+                      <span className="text-white font-bold text-xl">SE</span>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-800 dark:text-white">SAP Developer</h3>
-                      <p className="text-gray-600 dark:text-gray-300">Enterprise Solutions Expert</p>
+                      <h3 className="text-xl font-bold text-gray-800 dark:text-white">Custom Software Engineer Analyst</h3>
+                      <p className="text-gray-600 dark:text-gray-300">Accenture Services Pvt Ltd</p>
                     </div>
                   </div>
                   <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">

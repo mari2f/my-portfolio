@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Mail, Phone, MapPin, Send, MessageCircle, Calendar } from 'lucide-react';
 import { motion } from 'framer-motion';
+import emailjs from 'emailjs-com'; // 👈 EmailJS
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -19,23 +21,71 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+
+    // EmailJS Integration
+    emailjs.send(
+      'service_dlntvks',    // 🔁 Replace with your EmailJS Service ID
+      'template_53eufjb',   // 🔁 Replace with your EmailJS Template ID
+      formData,
+      'fl2evCCXlSmlXC-Fp'     // 🔁 Replace with your EmailJS Public Key
+    )
+    .then(() => {
+      alert('Email sent successfully!');
+    })
+    .catch((error) => {
+      alert('Failed to send message. Please try again.');
+      console.error(error);
+    });
+
     // Reset form
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
+
+
+  const openWhatsApp = useCallback(() => {
+    const phoneNumber = '919994325334'; 
+    const message = encodeURIComponent('Hi, I would like to discuss an SAP project with you.');
+    const url = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(url, '_blank');
+  }, []);
+
+ const openCalendar = useCallback(() => {
+  const title = 'Meeting with SAP BTP Consultant';
+  const details = 'Let’s discuss your SAP project.';
+  const location = 'Online';
+  const guestEmail = 'your.email@gmail.com'; // Replace with your email
+
+  // Dynamic time: now to 30 minutes from now
+  const now = new Date();
+  const startISO = new Date(now);
+  const endISO = new Date(now.getTime() + 30 * 60000); // 30 min duration
+
+  const formatDateForCalendar = (date) =>
+    date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+  const startDate = formatDateForCalendar(startISO);
+  const endDate = formatDateForCalendar(endISO);
+
+  const url = `https://calendar.google.com/calendar/u/0/r/eventedit?text=${encodeURIComponent(
+    title
+  )}&dates=${startDate}/${endDate}&details=${encodeURIComponent(
+    details
+  )}&location=${encodeURIComponent(location)}&add=${guestEmail}`;
+
+  window.open(url, '_blank');
+}, []);
 
   const contactInfo = [
     {
       icon: <Mail size={24} />,
       title: 'Email',
-      value: 'sap.developer@email.com',
+      value: 'marimuthuchidambaram006@email.com',
       description: 'Send me an email anytime!'
     },
     {
       icon: <Phone size={24} />,
       title: 'Phone',
-      value: '+1 (555) 123-4567',
+      value: '+91 99943 25334',
       description: 'Available during business hours'
     },
     {
@@ -60,8 +110,7 @@ const Contact = () => {
             Get In Touch
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Ready to discuss your SAP project? Let's collaborate to build enterprise solutions that drive your business forward.
-          </p>
+            Ready to discuss your SAP project? I'm available for freelance opportunities—let’s collaborate to build enterprise solutions that drive your business forward.          </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16">
@@ -107,17 +156,22 @@ const Contact = () => {
               viewport={{ once: true }}
               className="space-y-4"
             >
+              {/* WhatsApp Chat */}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full flex items-center justify-center space-x-3 px-6 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                onClick={openWhatsApp}
+                className="w-full flex items-center justify-center space-x-3 px-6 py-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200"
               >
                 <MessageCircle size={20} />
-                <span>Start a Conversation</span>
+                <span>Start a WhatsApp Chat</span>
               </motion.button>
+
+              {/* Schedule Meeting */}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={openCalendar}
                 className="w-full flex items-center justify-center space-x-3 px-6 py-4 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors duration-200"
               >
                 <Calendar size={20} />
@@ -138,82 +192,36 @@ const Contact = () => {
               className="space-y-6 bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg"
             >
               <div className="grid md:grid-cols-2 gap-6">
-                <motion.div
-                  whileFocus={{ scale: 1.02 }}
-                >
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
+                <motion.div whileFocus={{ scale: 1.02 }}>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                  <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   />
                 </motion.div>
-                <motion.div
-                  whileFocus={{ scale: 1.02 }}
-                >
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
+                <motion.div whileFocus={{ scale: 1.02 }}>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   />
                 </motion.div>
               </div>
-              <motion.div
-                whileFocus={{ scale: 1.02 }}
-              >
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
+              <motion.div whileFocus={{ scale: 1.02 }}>
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                <input type="text" id="subject" name="subject" value={formData.subject} onChange={handleChange} required
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 />
               </motion.div>
-              <motion.div
-                whileFocus={{ scale: 1.02 }}
-              >
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={6}
-                  required
+              <motion.div whileFocus={{ scale: 1.02 }}>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                <textarea id="message" name="message" value={formData.message} onChange={handleChange} rows={6} required
                   className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 ></textarea>
               </motion.div>
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <motion.button type="submit" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                 className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-4 px-6 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 flex items-center justify-center space-x-2 group"
               >
                 <span>Send Message</span>
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
+                <motion.div animate={{ x: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
                   <Send size={20} />
                 </motion.div>
               </motion.button>
