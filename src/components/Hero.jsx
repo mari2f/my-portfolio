@@ -88,7 +88,10 @@ const Hero = () => {
         >
           {/* Left Content */}
           <div className="text-center lg:text-left">
-            <motion.div variants={itemVariants} className="mb-6">
+            <motion.div
+              variants={itemVariants}
+              className="mb-6 mt-[60px] sm:mt-0"
+            >
               <motion.p
                 variants={itemVariants}
                 className="text-blue-200 text-lg mb-2 font-medium"

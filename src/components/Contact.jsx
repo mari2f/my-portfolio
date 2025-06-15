@@ -61,7 +61,7 @@ const Contact = () => {
     const title = "Meeting with SAP BTP Consultant";
     const details = "Let’s discuss your SAP project.";
     const location = "Online";
-    const guestEmail = "your.email@gmail.com"; // Replace with your email
+    const guestEmail = "marimuthuchidambaram006@gmail.com"; // Replace with your email
 
     // Dynamic time: now to 30 minutes from now
     const now = new Date();
