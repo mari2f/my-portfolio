@@ -17,7 +17,12 @@ const Hero = () => {
   };
 
   const handleDownload = () => {
-    // Trigger file download
+  const password = window.prompt("Enter the password to download the resume:");
+
+  // Replace with your actual password
+  const correctPassword = "Fiori2025";
+
+  if (password === correctPassword) {
     toast.success("Resume downloaded successfully!");
 
     const link = document.createElement("a");
@@ -25,11 +30,12 @@ const Hero = () => {
     link.download = "Marimuthu_Chidambaram_resume.pdf";
     document.body.appendChild(link);
     link.click();
-
     document.body.removeChild(link);
+  } else {
+    toast.error("Incorrect password. Download failed.");
+  }
+};
 
-    // Show the success modal
-  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
